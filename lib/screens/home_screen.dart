@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../services/location_service.dart';
 import '../services/prayer_service.dart';
+import '../services/azan_scheduler.dart';
 import '../widgets/prayer_card.dart';
 import '../widgets/countdown_card.dart';
 
@@ -38,9 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
       final position = await locationService.getLocation();
 
       final data = await prayerService.getPrayerTimes(
+
         latitude: position.latitude,
+
         longitude: position.longitude,
+
       );
+
+      await AzanScheduler.instance.scheduleToday();
+
 
       setState(() {
         timings = data;
@@ -65,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: CircularProgressIndicator(),
         ),
       );
+
     }
 
     return Scaffold(

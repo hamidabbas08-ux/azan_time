@@ -43,6 +43,8 @@ class NotificationService {
       channelDescription: 'Prayer time notifications',
       importance: Importance.max,
       priority: Priority.high,
+      playSound: true,
+      sound: RawResourceAndroidNotificationSound('azan'),
     );
 
     const NotificationDetails notificationDetails =
