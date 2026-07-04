@@ -1,0 +1,47 @@
+name: Prayer Times CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Set up Flutter (Latest Stable)
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+
+    - name: Install Dependencies
+      run: flutter pub get
+
+    # 1. ٹیسٹنگ APK بلڈ کرنا
+    - name: Build APK for Local Testing
+      run: flutter build apk --debug
+
+    # 2. ٹیسٹنگ AAB (App Bundle) بلڈ کرنا
+    - name: Build App Bundle (AAB) for Testing
+      run: flutter build appbundle --debug
+
+    # 3. دونوں فائلوں کو ایک ساتھ گٹ ہب آرٹیکفٹس میں اپلوڈ کرنا
+    - name: Upload Testing APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: PrayerTime-Testing-APK
+        path: build/app/outputs/flutter-apk/app-debug.apk
+
+    - name: Upload Testing AAB
+      uses: actions/upload-artifact@v4
+      with:
+        name: PrayerTime-Testing-AAB
+        path: build/app/outputs/bundle/debug/app-debug.aab
