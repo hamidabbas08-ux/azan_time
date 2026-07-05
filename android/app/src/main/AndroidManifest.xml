@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <application
         android:name="${applicationName}"
@@ -31,11 +32,32 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
 
         <meta-data
             android:name="flutterEmbedding"
             android:value="2"/>
+
+        <service
+            android:name="dev.fluttercommunity.android_alarm_manager_plus.AlarmService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
+
+        <receiver
+            android:name="dev.fluttercommunity.android_alarm_manager_plus.AlarmReceiver"
+            android:exported="false"/>
+
+        <receiver
+            android:name="dev.fluttercommunity.android_alarm_manager_plus.RebootBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+
+        </receiver>
 
     </application>
 
