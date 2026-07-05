@@ -1,0 +1,2 @@
+-keep class dev.fluttercommunity.plus.androidalarmmanager.** { *; }
+-keep class io.flutter.plugins.** { *; }
