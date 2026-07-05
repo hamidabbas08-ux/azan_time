@@ -8,7 +8,7 @@ import 'services/notification_service.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await AndroidAlarmManager.initialize();
+  // await AndroidAlarmManager.initialize();
 
   await NotificationService.instance.initialize();
 
