@@ -1,4 +1,4 @@
-package com.hamid.prayer_time
+package com.hamid.azantime
 
 import android.content.Context
 import android.content.Intent

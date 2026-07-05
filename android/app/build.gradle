@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace "com.hamid.prayer_time"
+    namespace "com.hamid.azantime"
     compileSdkVersion flutter.compileSdkVersion
 
     compileOptions {
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hamid.prayer_time"
+        applicationId "com.hamid.azantime"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutter.versionCode
