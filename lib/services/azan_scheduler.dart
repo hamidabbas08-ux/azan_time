@@ -22,35 +22,11 @@ class AzanScheduler {
       longitude: position.longitude,
     );
 
-    await _schedulePrayer(
-      id: 1,
-      name: 'Fajr',
-      time: timings['Fajr'],
-    );
-
-    await _schedulePrayer(
-      id: 2,
-      name: 'Dhuhr',
-      time: timings['Dhuhr'],
-    );
-
-    await _schedulePrayer(
-      id: 3,
-      name: 'Asr',
-      time: timings['Asr'],
-    );
-
-    await _schedulePrayer(
-      id: 4,
-      name: 'Maghrib',
-      time: timings['Maghrib'],
-    );
-
-    await _schedulePrayer(
-      id: 5,
-      name: 'Isha',
-      time: timings['Isha'],
-    );
+    await _schedulePrayer(id: 1, name: 'Fajr', time: timings['Fajr']);
+    await _schedulePrayer(id: 2, name: 'Dhuhr', time: timings['Dhuhr']);
+    await _schedulePrayer(id: 3, name: 'Asr', time: timings['Asr']);
+    await _schedulePrayer(id: 4, name: 'Maghrib', time: timings['Maghrib']);
+    await _schedulePrayer(id: 5, name: 'Isha', time: timings['Isha']);
   }
 
   Future<void> _schedulePrayer({
@@ -58,19 +34,8 @@ class AzanScheduler {
     required String name,
     required String time,
   }) async {
-    final parts = time.split(':');
-
-    final now = DateTime.now();
-
-    final prayerTime = DateTime(
-      now.year,
-      now.month,
-      now.day,
-      int.parse(parts[0]),
-      int.parse(parts[1]),
-    );
-
-    if (prayerTime.isBefore(now)) return;
+    // صرف ٹیسٹ کے لیے: ہر الارم ایک منٹ بعد
+    final prayerTime = DateTime.now().add(const Duration(minutes: 1));
 
     await AndroidAlarmManager.oneShotAt(
       prayerTime,
