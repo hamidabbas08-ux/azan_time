@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <application
-        android:name="${applicationName}"
+        android:name="io.flutter.embedding.android.FlutterApplication"
         android:label="Azan Time"
         android:icon="@mipmap/launcher_icon">
 
